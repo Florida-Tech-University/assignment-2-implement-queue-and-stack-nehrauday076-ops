@@ -57,7 +57,7 @@ public class ArrayQueue<E> implements QueueADT<E> {
         // 3) set data[front] = null (help GC)
         data[front] = null;
         // 4) front = (front + 1) % data.length
-        front = (front+1) % data.length;
+        front = (front + 1) % data.length;
         // 5) decrement size
         size--;
         // 6) return answer
