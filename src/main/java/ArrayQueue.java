@@ -14,7 +14,7 @@ public class ArrayQueue<E> implements QueueADT<E> {
     @Override
     public int size() {
         // TODO: return current number of elements
-        return size    ;
+        return size;
     }
 
     @Override
@@ -41,8 +41,10 @@ public class ArrayQueue<E> implements QueueADT<E> {
         }
         // 2) compute available index = (front + size) % data.length
         int avail = (front + size) % data.length;
+        
         // 3) store e there
         data[avail] = e;
+        
         // 4) increment size
         size++;
     }
@@ -51,15 +53,20 @@ public class ArrayQueue<E> implements QueueADT<E> {
     public E dequeue() {
         // TODO:
         // 1) if empty return null
-        if )isEmpty()) return null;
+        if (isEmpty()) return null;
+        
         // 2) store answer = data[front]
         E answer = data[front];
+        
         // 3) set data[front] = null (help GC)
         data[front] = null;
+        
         // 4) front = (front + 1) % data.length
-        front = (front + 1) % data.length;
+        front = (front+1) % data.length;
+        
         // 5) decrement size
         size--;
+        
         // 6) return answer
         return answer;
     }
