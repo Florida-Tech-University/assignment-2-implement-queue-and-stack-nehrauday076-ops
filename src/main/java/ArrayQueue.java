@@ -39,6 +39,7 @@ public class ArrayQueue<E> implements QueueADT<E> {
         if(size == data.length){
             throw new IllegalStateException("Queue is full");
         }
+        
         // 2) compute available index = (front + size) % data.length
         int avail = (front + size) % data.length;
         
