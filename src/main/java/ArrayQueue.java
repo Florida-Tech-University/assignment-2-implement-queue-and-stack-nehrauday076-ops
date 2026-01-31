@@ -61,7 +61,7 @@ public class ArrayQueue<E> implements QueueADT<E> {
         // 5) decrement size
         size--;
         // 6) return answer
-        return answer`;
+        return answer;
     }
 
     // Helpful for debugging (not graded)
