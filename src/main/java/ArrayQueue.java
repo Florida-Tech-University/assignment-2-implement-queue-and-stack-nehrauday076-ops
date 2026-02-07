@@ -1,77 +1,60 @@
 import java.util.Objects;
 
 public class ArrayQueue<E> implements QueueADT<E> {
+
     private final E[] data;
-    private int front = 0;  // index of the front element
-    private int size = 0;   // number of elements in the queue
+    private int front = 0;   // index of the front element
+    private int size = 0;    // number of elements in the queue
 
     @SuppressWarnings("unchecked")
     public ArrayQueue(int capacity) {
-        if (capacity <= 0) throw new IllegalArgumentException("capacity must be > 0");
-        this.data = (E[]) new Object[capacity];
+        if (capacity <= 0)
+            throw new IllegalArgumentException("capacity must be > 0");
+        data = (E[]) new Object[capacity];
     }
 
     @Override
     public int size() {
-        // TODO: return current number of elements
         return size;
     }
 
     @Override
     public boolean isEmpty() {
-        // TODO: return true if size == 0
         return size == 0;
     }
 
     @Override
     public E first() {
-        // TODO: if empty return null; else return data[front]
-        if(isEmpty()) return null;
+        if (isEmpty()) return null;
         return data[front];
     }
 
     @Override
     public void enqueue(E e) {
-        Objects.requireNonNull(e, "Null elements are not supported in this assignment.");
+        Objects.requireNonNull(e, "Null elements are not supported.");
 
-        // TODO:
-        // 1) if full (size == data.length) throw IllegalStateException
-        if(size == data.length){
+        if (size == data.length)
             throw new IllegalStateException("Queue is full");
-        }
-        
-        // 2) compute available index = (front + size) % data.length
-        int avail = (front + size) % data.length;
-        
-        // 3) store e there
+
+        int avail = (front + size) % data.length; // circular index
         data[avail] = e;
-        
-        // 4) increment size
         size++;
     }
 
     @Override
     public E dequeue() {
-        // TODO:
-        // 1) if empty return null
         if (isEmpty()) return null;
-        
-        // 2) store answer = data[front]
+
         E answer = data[front];
-        
-        // 3) set data[front] = null (help GC)
-        data[front] = null;
-        
-        // 4) front = (front + 1) % data.length
-        front = (front+1) % data.length;
-        
-        // 5) decrement size
+        data[front] = null;                 // help GC
+        front = (front + 1) % data.length;  // circular move
         size--;
-        
-        // 6) return answer
+
         return answer;
     }
 
     // Helpful for debugging (not graded)
-    int capacity() { return data.length; }
+    int capacity() {
+        return data.length;
+    }
 }
