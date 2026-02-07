@@ -14,7 +14,7 @@ public class ArrayQueue<E> implements QueueADT<E> {
     @Override
     public int size() {
         // TODO: return current number of elements
-        return size;
+        return -1;
     }
 
     @Override
